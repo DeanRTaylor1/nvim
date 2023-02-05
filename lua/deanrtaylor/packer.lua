@@ -70,4 +70,7 @@ return require('packer').startup(function(use)
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   }
+
+  use('preservim/nerdcommenter')
+  use('tpope/vim-surround')
 end)

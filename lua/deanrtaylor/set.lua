@@ -23,3 +23,7 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
+vim.opt.backup = false
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
