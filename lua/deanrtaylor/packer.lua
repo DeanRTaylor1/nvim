@@ -73,4 +73,8 @@ return require('packer').startup(function(use)
 
   use('preservim/nerdcommenter')
   use('tpope/vim-surround')
+
+use('MunifTanjim/prettier.nvim')
+
+
 end)
