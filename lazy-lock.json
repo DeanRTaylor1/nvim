@@ -9,6 +9,7 @@
   "neoformat": { "branch": "master", "commit": "e18e0cc2641dd78f0cdb0ddd575843045d672dde" },
   "nerdcommenter": { "branch": "master", "commit": "d069f7fb562fb9eb6911fe23cda7aca2a387043e" },
   "nvim-autopairs": { "branch": "master", "commit": "7470af886ffb3df32800e5ef9c072a6cd825770d" },
+  "nvim-lspconfig": { "branch": "master", "commit": "27e9e1d2638ffd133b06f314a49ac55825cb1017" },
   "nvim-treesitter": { "branch": "master", "commit": "fa9fe9a95ba481e26e11eede4657f8c5350a0eaa" },
   "nvim-web-devicons": { "branch": "master", "commit": "f16ec8f6e5d23e4349501dae46e0a661918e086e" },
   "plenary.nvim": { "branch": "master", "commit": "0c31c398261567cda89b66ddffc69d39495f63ae" },

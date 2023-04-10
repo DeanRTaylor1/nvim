@@ -58,10 +58,10 @@ require("lazy").setup({
     { 'hrsh7th/nvim-cmp' },     -- Required
     { 'hrsh7th/cmp-nvim-lsp' }, -- Required
     { 'L3MON4D3/LuaSnip' },     -- Required
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-path' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-nvim-lua' },
   },
   {
     "williamboman/mason.nvim",
@@ -96,7 +96,49 @@ require("lazy").setup({
   },
   'preservim/nerdcommenter',
   'tpope/vim-surround',
-  'MunifTanjim/prettier.nvim',
+  'neovim/nvim-lspconfig',
+  {
+    'MunifTanjim/prettier.nvim',
+    config = function()
+      require('prettier').setup({
+        bin = 'prettier', -- or `'prettierd'` (v0.22+)
+        filetypes = {
+          "css",
+          "graphql",
+          "html",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "less",
+          "markdown",
+          "scss",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+        },
+        cli_options = {
+          arrow_parens = "always",
+          bracket_spacing = true,
+          bracket_same_line = false,
+          embedded_language_formatting = "auto",
+          end_of_line = "lf",
+          html_whitespace_sensitivity = "css",
+          -- jsx_bracket_same_line = false,
+          jsx_single_quote = false,
+          print_width = 80,
+          prose_wrap = "always",
+          quote_props = "as-needed",
+          semi = true,
+          single_attribute_per_line = false,
+          single_quote = false,
+          tab_width = 2,
+          trailing_comma = "es5",
+          use_tabs = false,
+          vue_indent_script_and_style = false,
+        },
+      })
+    end
+  },
   'mbbill/undotree',
   {
     'lewis6991/gitsigns.nvim',
