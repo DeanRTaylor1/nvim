@@ -1,7 +1,7 @@
 require("deanrtaylor")
 print("hello world")
 
-
+        
 --nvim-tree
 
 --vim.g.loaded_netrw = 1
@@ -29,4 +29,4 @@ require("luasnip/loaders/from_vscode").load({include = {"html"}})
 require("luasnip/loaders/from_vscode").lazy_load()
 
 
-
+vim.opt.listchars = {tab = ">>", trail = "-", eol = "$", space = "·"}
