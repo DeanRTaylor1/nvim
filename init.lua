@@ -146,8 +146,26 @@ require("lazy").setup({
       require('gitsigns').setup()
     end
   },
-  "https://github.com/github/copilot.vim"
+  --"https://gi{
+  'jose-elias-alvarez/null-ls.nvim',
+  config = function()
+    local null_ls = require("null-ls")
+    local sources = {
+      null_ls.builtins.formatting.gofmt.with({}),
+      null_ls.builtins.formatting.gofumpt.with({}),
+      null_ls.builtins.formatting.goimports.with({ args = { "-srcdir", "$DIRNAME" } }),
+      null_ls.builtins.formatting.goimports_reviser.with({ args = { "$FILENAME" } }),
+      null_ls.builtins.formatting.golines.with({}),
+    }
+
+    null_ls.config({
+      sources = sources,
+    })
+
+    require("lspconfig")["null-ls"].setup({})
+  end
 })
+
 
 require('lualine').setup()
 
@@ -192,11 +210,11 @@ vim.api.nvim_set_keymap('n', '<leader>ss', '<cmd>w<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>tt', '<cmd>terminal<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>ll', ':set list<cr>', { noremap = true })
 
-vim.g.copilot_assume_mapped = true
+--vim.g.copilot_assume_mapped = true
 
 
-vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+--vim.g.copilot_no_tab_map = true
+--vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -240,21 +258,65 @@ end
 
 ColorMyPencils()
 
---[[require'nvim-treesitter.configs'.setup {]]
---[[-- A list of parser names, or "all"]]
---[[ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust", "go"  },]]
---[[-- Install parsers synchronously (only applied to `ensure_installed`)]]
---[[sync_install = false,]]
---[[-- Automatically install missing parsers when entering buffer]]
---[[-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally]]
---[[auto_install = true,]]
---[[highlight = {]]
---[[-- `false` will disable the whole extension]]
---[[enable = true,]]
---[[-- Setting this to true will run `:h syntax` and tree-sitter at the same time.]]
---[[-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).]]
---[[-- Using this option may slow down your editor, and you may see some duplicate highlights.]]
---[[-- Instead of true it can also be a list of languages]]
---[[additional_vim_regex_highlighting = false,]]
---[[},]]
---[[}]]
+local nvim_lsp = require('lspconfig')
+nvim_lsp.tsserver.setup {
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    ),
+  },
+}
+
+nvim_lsp.eslint.setup {
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    ),
+  },
+}
+
+nvim_lsp.gopls.setup {
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+      analyses = {
+        unusedparams = true,
+        fillstruct = true
+      },
+      staticcheck = true,
+    },
+  },
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    ),
+  },
+}
+
+nvim_lsp.ocamllsp.setup {
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    ),
+  },
+}
